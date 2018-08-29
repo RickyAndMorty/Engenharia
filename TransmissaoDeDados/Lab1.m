@@ -1,7 +1,7 @@
 clear all
 close all
 clc
-% Laboratório de Transmissão de dados
+% Laboratório de Transmissão de dados (Lab 1)
 %
 % 1) Considere o sinal cont´?nuo g(t), em Volts, da Eq. (1). Pede-se:
 % g(t) = cos(?t) + 2 cos(4?t) ? 3 sin(6?t) [V ]
