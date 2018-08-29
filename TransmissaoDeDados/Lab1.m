@@ -1,7 +1,14 @@
 clear all
 close all
 clc
+% Laboratório de Transmissão de dados
+%
+% 1) Considere o sinal cont´?nuo g(t), em Volts, da Eq. (1). Pede-se:
+% g(t) = cos(?t) + 2 cos(4?t) ? 3 sin(6?t) [V ]
 %a
+% Utilizando os comandos plot e subplot, fa¸ca uma figura com dois gr´aficos: no gr´afico de cima,
+% apresente o sinal com per´?odo de amostragem de Ts = 0, 05 s e quantidade de amostras de N = 1000;
+
 t = (0:999)*0.05;
 
 g = cos(pi.*t) + 2*cos(4*pi.*t) - 3*sin(6*pi.*t);
