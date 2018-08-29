@@ -8,10 +8,12 @@ g = cos(pi.*t) + 2*cos(4*pi.*t) - 3*sin(6*pi.*t);
 
 
 %b
-subplot(2,1,1);
+figure(1)
+aux=subplot(2,1,1);
 
 plot(t,g)
 title('estou aqui')
+xlim(aux,[0 50])
 xlabel('tempo(s)')
 ylabel('Amplitude(V)')
 aux = subplot(2,1,2);
@@ -30,15 +32,50 @@ Nt = 40;
 
 EgT = sum(abs(g(1:Nt).^2).*0.05)
 
-%c1) Calcule a a potência média (Pg) de todo o sinal, considerando To a dura¸c˜ao de todo o sinal em segundos,
+%c2) Calcule a a potência média (Pg) de todo o sinal, considerando To a dura¸c˜ao de todo o sinal em segundos,
 %sendo
-T0 = 50;% Duração de todo o sinal em segundos
+T0 = 49.95;% Duração de todo o sinal em segundos
 N = 1000;%Número de amostras
-Pg = (1/T0)* sum(abs(g(1:N).^2).*0.05)
+Ts = 0.05;
+Pg = (1/T0)* sum(abs(g(1:N).^2).*Ts)
 
-%
+% d) Obtenha a Transformada de Fourier (espectro de frequˆencias) G(f) do sinal da Eq. (1) usando a
+% transformada r´apida de Fourier (FFT) com o comando fft. Veja o help do fft no Matlab e na
+% pen´ultima linha deste help abra o “Reference page for fft” e veja como o fft ´e aplicado. Apresente
+% o m´odulo (abs) e a fase (angle) do espectro em dois gr´aficos de uma mesma figura. Como Ts = 0, 05,
+% a frequˆencia de amostragem fs ´e 1/Ts = 20 Hz. Logo, o eixo x de frequˆencias do espectro vai de 0 a
+% 10 Hz (ser´a melhor explicado no cap´?tulo de teorema da amostragem). Novamente, adicione r´otulos e
+% t´?tulos. Note que a frequˆencia e a amplitude do sinal g(t) ´e a mesma de G(f) se for feito fft(g).
 
+%close all
+figure(2)
+Ts = 0;
 
+G = fft(g);
 
+G2 = (G(1:501)*2)/1000;
+f = linspace(0,10,501);
+
+aux = subplot(2,1,1);
+plot(f,G2)
+title('Aplicando fft em g')
+xlim(aux,[0 10])
+xlabel('f(Hz)')
+ylabel('G(f)')
+
+%(e) Obtenha a curva da densidade espectral de potˆencia (espectro de potˆencias) Sg(f) do sinal da Eq. (1)
+% em dB usando o comando pwelch(g,[],[],<no de amostras>,fs).
+
+Sg = pwelch(g,[],[],1000,'twosided');
+%close all
+
+aux = subplot(2,2,4);
+plot(f,G2)
+title('')
+xlim(aux,[0 1000])
+xlabel('')
+ylabel('')
+
+plot(1:1:1000,10*log10(Sg))
 
 
