@@ -49,33 +49,33 @@ Pg = (1/T0)* sum(abs(g(1:N).^2).*Ts)
 
 %close all
 figure(2)
-Ts = 0;
+Ts = 0.05;
 
 G = fft(g);
 
 G2 = (G(1:501)*2)/1000;
 f = linspace(0,10,501);
 
-aux = subplot(2,1,1);
-plot(f,G2)
+
+plot(f,abs(G2))
 title('Aplicando fft em g')
-xlim(aux,[0 10])
+xlim([0 10])
 xlabel('f(Hz)')
 ylabel('G(f)')
 
 %(e) Obtenha a curva da densidade espectral de potˆencia (espectro de potˆencias) Sg(f) do sinal da Eq. (1)
 % em dB usando o comando pwelch(g,[],[],<no de amostras>,fs).
 
-Sg = pwelch(g,[],[],1000,'twosided');
+figure(3)
+fs = 1/Ts;
+Sg = pwelch(g,[],[],1000,fs);
 %close all
-
-aux = subplot(2,2,4);
-plot(f,G2)
+plot(1:1:501,10*log10(Sg))
 title('')
-xlim(aux,[0 1000])
+xlim([0 501])
 xlabel('')
 ylabel('')
 
-plot(1:1:1000,10*log10(Sg))
+
 
 
