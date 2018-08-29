@@ -2,7 +2,6 @@ clear all
 close all
 clc
 % Laboratório de Transmissão de dados (Lab 1)
-%
 % 1) Considere o sinal contínuo g(t), em Volts, da Eq. (1). Pede-se:
 % g(t) = cos(pit) + 2 cos(4pit) - 3 sin(6pit) [V ]
 %a
