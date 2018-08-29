@@ -3,12 +3,14 @@ close all
 clc
 % Laboratório de Transmissão de dados (Lab 1)
 %
-% 1) Considere o sinal cont´?nuo g(t), em Volts, da Eq. (1). Pede-se:
-% g(t) = cos(?t) + 2 cos(4?t) ? 3 sin(6?t) [V ]
+% 1) Considere o sinal contínuo g(t), em Volts, da Eq. (1). Pede-se:
+% g(t) = cos(pit) + 2 cos(4pit) - 3 sin(6pit) [V ]
 %a
-% Utilizando os comandos plot e subplot, fa¸ca uma figura com dois gr´aficos: no gr´afico de cima,
-% apresente o sinal com per´?odo de amostragem de Ts = 0, 05 s e quantidade de amostras de N = 1000;
-
+% Utilizando os comandos plot e subplot, faça uma figura com dois gráficos: no gráfico de cima,
+% apresente o sinal com peróodo de amostragem de Ts = 0.05s e quantidade de amostras de N = 1000;
+% Na figura de baixo do subplot, apresente os primeiros 5 s do mesmo sinal (usar xlim) com linha
+% tracejada e marcando cada amostra com um ‘o’. Coloque r´otulos nos eixos e t´?tulo na figura (xlabel,
+% ylabel, title).
 t = (0:999)*0.05;
 
 g = cos(pi.*t) + 2*cos(4*pi.*t) - 3*sin(6*pi.*t);
@@ -31,7 +33,9 @@ xlim(aux,[0 5])
 xlabel('tempo(s)')
 ylabel('Amplitude(V)')
 
-%c1
+%c1)
+% Calcule a energia de um per´?odo do sinal (EgT ), (utilize a função sum) considerando NT o número de
+% amostras de um período do sinal.
 % T = 2 segundos
 % Número de amostras = 40
 
