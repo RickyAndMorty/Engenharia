@@ -6,7 +6,9 @@ load audio
 %Banda = 5kHz
 fs = 176.4*10^3;
 Ts = 1/fs;
+%fc = frequência da portadora de alta frequência (Hz)
 fc = 12*10^3;
+% m(t) mensagem ou informação a ser enviada
 mt = m';
 N = length(mt);
 
