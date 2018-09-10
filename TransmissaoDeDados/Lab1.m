@@ -78,13 +78,13 @@ ylabel('G(f)')
 
 figure(3)
 fs = 1/Ts;
-Sg = pwelch(g,[],[],1000,fs);
+pwelch(g,[],[],1000,fs);
 %close all
-plot(1:1:501,10*log10(Sg))
-title('')
-xlim([0 501])
-xlabel('')
-ylabel('')
+% plot(1:1:501,10*log10(Sg))
+% title('')
+% xlim([0 501])
+% xlabel('')
+% ylabel('')
 
 
 
