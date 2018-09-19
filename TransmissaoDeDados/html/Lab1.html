@@ -1,0 +1,261 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Lab1</title><meta name="generator" content="MATLAB 9.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2018-09-19"><meta name="DC.source" content="Lab1.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><pre class="codeinput">clear <span class="string">all</span>
+close <span class="string">all</span>
+clc
+<span class="comment">% Laborat&oacute;rio de Transmiss&atilde;o de dados (Lab 1)</span>
+<span class="comment">% 1) Considere o sinal cont&iacute;nuo g(t), em Volts, da Eq. (1). Pede-se:</span>
+<span class="comment">% g(t) = cos(pit) + 2 cos(4pit) - 3 sin(6pit) [V ]</span>
+<span class="comment">%a</span>
+<span class="comment">% Utilizando os comandos plot e subplot, fa&ccedil;a uma figura com dois gr&aacute;ficos: no gr&aacute;fico de cima,</span>
+<span class="comment">% apresente o sinal com per&oacute;odo de amostragem de Ts = 0.05s e quantidade de amostras de N = 1000;</span>
+<span class="comment">% Na figura de baixo do subplot, apresente os primeiros 5 s do mesmo sinal (usar xlim) com linha</span>
+<span class="comment">% tracejada e marcando cada amostra com um &#8216;o&#8217;. Coloque r&acute;otulos nos eixos e t&acute;?tulo na figura (xlabel,</span>
+<span class="comment">% ylabel, title).</span>
+t = (0:999)*0.05;
+
+g = cos(pi.*t) + 2*cos(4*pi.*t) - 3*sin(6*pi.*t);
+
+
+<span class="comment">%b</span>
+figure(1)
+aux=subplot(2,1,1);
+
+plot(t,g)
+title(<span class="string">'Tempo vs Tens&atilde;o'</span>)
+xlim(aux,[0 50])
+xlabel(<span class="string">'tempo(s)'</span>)
+ylabel(<span class="string">'Amplitude(V)'</span>)
+aux = subplot(2,1,2);
+
+plot(t(1,1:101),g(1,1:101),<span class="string">'o--'</span>)
+title(<span class="string">'Tempo vs Tens&atilde;o'</span>)
+xlim(aux,[0 5])
+xlabel(<span class="string">'tempo(s)'</span>)
+ylabel(<span class="string">'Amplitude(V)'</span>)
+
+<span class="comment">%c1)</span>
+<span class="comment">% Calcule a energia de um per&acute;?odo do sinal (EgT ), (utilize a fun&ccedil;&atilde;o sum) considerando NT o n&uacute;mero de</span>
+<span class="comment">% amostras de um per&iacute;odo do sinal.</span>
+<span class="comment">% T = 2 segundos</span>
+<span class="comment">% N&uacute;mero de amostras = 40</span>
+
+Nt = 40;
+
+EgT = sum(abs(g(1:Nt).^2).*0.05)
+
+<span class="comment">%c2) Calcule a a pot&ecirc;ncia m&eacute;dia (Pg) de todo o sinal, considerando To a dura&cedil;c&#732;ao de todo o sinal em segundos,</span>
+<span class="comment">%sendo</span>
+T0 = 49.95;<span class="comment">% Dura&ccedil;&atilde;o de todo o sinal em segundos</span>
+N = 1000;<span class="comment">%N&uacute;mero de amostras</span>
+Ts = 0.05;
+Pg = (1/T0)* sum(abs(g(1:N).^2).*Ts)
+
+<span class="comment">% d) Obtenha a Transformada de Fourier (espectro de frequ&#710;encias) G(f) do sinal da Eq. (1) usando a</span>
+<span class="comment">% transformada r&acute;apida de Fourier (FFT) com o comando fft. Veja o help do fft no Matlab e na</span>
+<span class="comment">% pen&acute;ultima linha deste help abra o &#8220;Reference page for fft&#8221; e veja como o fft &acute;e aplicado. Apresente</span>
+<span class="comment">% o m&acute;odulo (abs) e a fase (angle) do espectro em dois gr&acute;aficos de uma mesma figura. Como Ts = 0, 05,</span>
+<span class="comment">% a frequ&#710;encia de amostragem fs &acute;e 1/Ts = 20 Hz. Logo, o eixo x de frequ&#710;encias do espectro vai de 0 a</span>
+<span class="comment">% 10 Hz (ser&acute;a melhor explicado no cap&acute;?tulo de teorema da amostragem). Novamente, adicione r&acute;otulos e</span>
+<span class="comment">% t&acute;?tulos. Note que a frequ&#710;encia e a amplitude do sinal g(t) &acute;e a mesma de G(f) se for feito fft(g).</span>
+
+<span class="comment">%close all</span>
+figure(2)
+Ts = 0.05;
+
+G = fft(g);
+
+G2 = (G(1:501)*2)/1000;
+f = linspace(0,10,501);
+
+
+plot(f,abs(G2))
+title(<span class="string">'Aplicando fft em g'</span>)
+xlim([0 10])
+xlabel(<span class="string">'f(Hz)'</span>)
+ylabel(<span class="string">'G(f)'</span>)
+
+<span class="comment">%(e) Obtenha a curva da densidade espectral de pot&#710;encia (espectro de pot&#710;encias) Sg(f) do sinal da Eq. (1)</span>
+<span class="comment">% em dB usando o comando pwelch(g,[],[],&lt;no de amostras&gt;,fs).</span>
+
+figure(3)
+fs = 1/Ts;
+pwelch(g,[],[],1000,fs);
+<span class="comment">%close all</span>
+<span class="comment">% plot(1:1:501,10*log10(Sg))</span>
+<span class="comment">% title('')</span>
+<span class="comment">% xlim([0 501])</span>
+<span class="comment">% xlabel('')</span>
+<span class="comment">% ylabel('')</span>
+</pre><pre class="codeoutput">
+EgT =
+
+   14.0000
+
+
+Pg =
+
+    7.0070
+
+</pre><img vspace="5" hspace="5" src="Lab1_01.png" alt=""> <img vspace="5" hspace="5" src="Lab1_02.png" alt=""> <img vspace="5" hspace="5" src="Lab1_03.png" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2017a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+clear all
+close all
+clc
+% Laboratório de Transmissão de dados (Lab 1)
+% 1) Considere o sinal contínuo g(t), em Volts, da Eq. (1). Pede-se:
+% g(t) = cos(pit) + 2 cos(4pit) - 3 sin(6pit) [V ]
+%a
+% Utilizando os comandos plot e subplot, faça uma figura com dois gráficos: no gráfico de cima,
+% apresente o sinal com peróodo de amostragem de Ts = 0.05s e quantidade de amostras de N = 1000;
+% Na figura de baixo do subplot, apresente os primeiros 5 s do mesmo sinal (usar xlim) com linha
+% tracejada e marcando cada amostra com um ‘o’. Coloque r´otulos nos eixos e t´?tulo na figura (xlabel,
+% ylabel, title).
+t = (0:999)*0.05;
+
+g = cos(pi.*t) + 2*cos(4*pi.*t) - 3*sin(6*pi.*t);
+
+
+%b
+figure(1)
+aux=subplot(2,1,1);
+
+plot(t,g)
+title('Tempo vs Tensão')
+xlim(aux,[0 50])
+xlabel('tempo(s)')
+ylabel('Amplitude(V)')
+aux = subplot(2,1,2);
+
+plot(t(1,1:101),g(1,1:101),'oREPLACE_WITH_DASH_DASH')
+title('Tempo vs Tensão')
+xlim(aux,[0 5])
+xlabel('tempo(s)')
+ylabel('Amplitude(V)')
+
+%c1)
+% Calcule a energia de um per´?odo do sinal (EgT ), (utilize a função sum) considerando NT o número de
+% amostras de um período do sinal.
+% T = 2 segundos
+% Número de amostras = 40
+
+Nt = 40;
+
+EgT = sum(abs(g(1:Nt).^2).*0.05)
+
+%c2) Calcule a a potência média (Pg) de todo o sinal, considerando To a dura¸c˜ao de todo o sinal em segundos,
+%sendo
+T0 = 49.95;% Duração de todo o sinal em segundos
+N = 1000;%Número de amostras
+Ts = 0.05;
+Pg = (1/T0)* sum(abs(g(1:N).^2).*Ts)
+
+% d) Obtenha a Transformada de Fourier (espectro de frequˆencias) G(f) do sinal da Eq. (1) usando a
+% transformada r´apida de Fourier (FFT) com o comando fft. Veja o help do fft no Matlab e na
+% pen´ultima linha deste help abra o “Reference page for fft” e veja como o fft ´e aplicado. Apresente
+% o m´odulo (abs) e a fase (angle) do espectro em dois gr´aficos de uma mesma figura. Como Ts = 0, 05,
+% a frequˆencia de amostragem fs ´e 1/Ts = 20 Hz. Logo, o eixo x de frequˆencias do espectro vai de 0 a
+% 10 Hz (ser´a melhor explicado no cap´?tulo de teorema da amostragem). Novamente, adicione r´otulos e
+% t´?tulos. Note que a frequˆencia e a amplitude do sinal g(t) ´e a mesma de G(f) se for feito fft(g).
+
+%close all
+figure(2)
+Ts = 0.05;
+
+G = fft(g);
+
+G2 = (G(1:501)*2)/1000;
+f = linspace(0,10,501);
+
+
+plot(f,abs(G2))
+title('Aplicando fft em g')
+xlim([0 10])
+xlabel('f(Hz)')
+ylabel('G(f)')
+
+%(e) Obtenha a curva da densidade espectral de potˆencia (espectro de potˆencias) Sg(f) do sinal da Eq. (1)
+% em dB usando o comando pwelch(g,[],[],<no de amostras>,fs).
+
+figure(3)
+fs = 1/Ts;
+pwelch(g,[],[],1000,fs);
+%close all
+% plot(1:1:501,10*log10(Sg))
+% title('')
+% xlim([0 501])
+% xlabel('')
+% ylabel('')
+
+
+
+
+
+##### SOURCE END #####
+--></body></html>

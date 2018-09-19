@@ -1,3 +1,6 @@
+
+%RICARDO DOS SANTOS 1380320
+
 clear all
 close all
 clc
@@ -20,14 +23,14 @@ figure(1)
 aux=subplot(2,1,1);
 
 plot(t,g)
-title('estou aqui')
+title('Tempo vs Tensão')
 xlim(aux,[0 50])
 xlabel('tempo(s)')
 ylabel('Amplitude(V)')
 aux = subplot(2,1,2);
 
 plot(t(1,1:101),g(1,1:101),'o--')
-title('estou aqui again')
+title('Tempo vs Tensão')
 xlim(aux,[0 5])
 xlabel('tempo(s)')
 ylabel('Amplitude(V)')
