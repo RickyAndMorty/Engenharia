@@ -135,7 +135,7 @@ subplot(3,1,3);
 
 pwelch(st,[],[],1024,fs);
 
-%2)
+%% 2)
 
 %a)
 
@@ -147,10 +147,21 @@ vt = st.*cos(2*pi*fc.*t);
 
 plot(t,vt)
 
-
+figure(6)
 H = (f < 5  );
+plot(f,H)
 
+%% Obtendo a fft de v(t)
 
+V = fft(vt);
+
+V1 = (V(1:(N/2 + 1))*2)/N;
+
+V0 = V1.*H;
+figure(7)
+plot(f,abs(V0))
+
+%V0 = H.*V;
 
 
 
