@@ -163,14 +163,29 @@ plot(f,abs(V0))
 
 %% exercício (d)
 
-%v0 = ifft(V0);
+V0espelhado = [V0(1:end-1) V0(end-1:-1:1)];  
 
-v0 = ifft(V0);   %Força o fft simétrico
+v0 = ifft(V0espelhado,'symmetric')*N;
+
+V0 = fft(v0);
+
+V2 = (V0(1:(N/2 + 1))*2)/N;
+
 
 figure(8)
 
 subplot(4,1,1);
+plot(f,abs(G2))% (i) o espectro de frequ^encias do sinal modulado S(f). 
+%(ii) o espectro de frequ^encias do sinal V (f),
+subplot(4,1,2);
+plot(f,abs(V1))
+%(iii) o espectro filtro passa-baixas H(f).
+subplot(4,1,3)
+plot(f,H)
+%(iii) o espectro do sinal de audio recuperado apos a filtragem na frequência V 0(f).
 
+subplot(4,1,4)
+plot(f,abs(V2))
 
 % sound(v0,f)
 % sound(m,f)
