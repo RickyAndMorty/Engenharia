@@ -151,7 +151,7 @@ figure(6)
 H = (f < 5  );
 plot(f,H)
 
-%% Obtendo a fft de v(t)
+%% Obtendo a fft de v(t), exercício (c)
 
 V = fft(vt);
 
