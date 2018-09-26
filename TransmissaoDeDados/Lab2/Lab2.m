@@ -161,7 +161,20 @@ V0 = V1.*H;
 figure(7)
 plot(f,abs(V0))
 
-%V0 = H.*V;
+%% exercício (d)
+
+%v0 = ifft(V0);
+
+v0 = ifft(V0);   %Força o fft simétrico
+
+figure(8)
+
+subplot(4,1,1);
+
+
+% sound(v0,f)
+% sound(m,f)
+
 
 
 

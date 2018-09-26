@@ -135,7 +135,7 @@ subplot(3,1,3);
 
 pwelch(st,[],[],1024,fs);
 
-%2)
+%% 2)
 
 %a)
 
@@ -146,12 +146,12 @@ subplot(3,1,1);
 vt = st.*cos(2*pi*fc.*t);
 
 plot(t,vt)
-
+%% exercício b
 figure(6)
 H = (f < 5  );
 plot(f,H)
 
-%Obtendo a fft de v(t)
+%% Obtendo a fft de v(t), exercício (c)
 
 V = fft(vt);
 
@@ -161,7 +161,15 @@ V0 = V1.*H;
 figure(7)
 plot(f,abs(V0))
 
-%V0 = H.*V;
+%% exercício (d)
+
+%v0 = ifft(V0);
+
+v0 = ifft(V0);   %Força o fft simétrico
+
+sound(v0,f)
+sound(m,f)
+
 
 
 
