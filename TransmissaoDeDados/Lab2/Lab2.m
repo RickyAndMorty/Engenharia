@@ -146,7 +146,7 @@ subplot(3,1,1);
 vt = st.*cos(2*pi*fc.*t);
 
 plot(t,vt)
-
+%% exercício b
 figure(6)
 H = (f < 5  );
 plot(f,H)
