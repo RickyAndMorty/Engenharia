@@ -3,6 +3,7 @@ clear all
 close all
 clc
 load audio
+%% exercício 1
 %Banda = 5kHz
 fs = 176.4*10^3;
 Ts = 1/fs;
@@ -146,10 +147,16 @@ subplot(3,1,1);
 vt = st.*cos(2*pi*fc.*t);
 
 plot(t,vt)
+xlabel('tempo(s)')
+ylabel('Tensão(V)')
+title('demodulação síncrona')
 %% exercício b
 figure(6)
 H = (f < 5  );
 plot(f,H)
+xlabel('f(Hz)')
+ylabel('H(f)')
+title('Filtro passa-baixas')
 
 %% Obtendo a fft de v(t), exercício (c)
 
@@ -160,6 +167,9 @@ V1 = (V(1:(N/2 + 1))*2)/N;
 V0 = V1.*H;
 figure(7)
 plot(f,abs(V0))
+title('Filtragem na frequência')
+xlabel('f(Hz)')
+ylabel('V0(f)')
 
 %% exercício (d)
 
@@ -175,20 +185,43 @@ V2 = (V0(1:(N/2 + 1))*2)/N;
 figure(8)
 
 subplot(4,1,1);
-plot(f,abs(G2))% (i) o espectro de frequ^encias do sinal modulado S(f). 
+plot(f,abs(G2))% (i) o espectro de frequ^encias do sinal modulado S(f).
+xlim([0 30])
+ylabel('S(f)')
+title('Sinal Recuperado')
+
 %(ii) o espectro de frequ^encias do sinal V (f),
 subplot(4,1,2);
 plot(f,abs(V1))
+xlim([0 30])
+ylabel('V(f)')
 %(iii) o espectro filtro passa-baixas H(f).
 subplot(4,1,3)
 plot(f,H)
+xlim([0 30])
+ylabel('H(f)')
 %(iii) o espectro do sinal de audio recuperado apos a filtragem na frequência V 0(f).
 
 subplot(4,1,4)
 plot(f,abs(V2))
 
-% sound(v0,f)
-% sound(m,f)
+xlim([0 30])
+ylabel('V0(f)')
+xlabel('f(kHz)')
+
+%sound(m, fs)% mensagem original
+
+sound(v0,fs)% mensagem demodulada
+
+%% 3)
+
+
+ %vt = st.*cos(2*pi*fc.*t + pi/3);Cai a amplitude do sinal
+ 
+ 
+ %vt = st.*cos(2*pi*fc.*t + pi/2); sinal não aparece o som porque o sinal some,
+ %devido à fase de modulação
+    
 
 
 
