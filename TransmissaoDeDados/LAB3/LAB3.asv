@@ -3,7 +3,7 @@ clear all
 close all
 clc
 load audio
-%% exercício 1
+
 %Banda = 5kHz
 fs = 176.4*10^3;
 Ts = 1/fs;
@@ -23,6 +23,7 @@ ct2 = sin(2*pi*fc.*t);
 st1 = ct1.*mt1;
 st2 = ct2.*mt2;
 
+%% 1) (a)
 figure(1)
 
 subplot(3,1,1);
@@ -31,28 +32,114 @@ grid on
 xlim([0.7 0.72])
 title('m1(t)')
 ylabel('amplitude')
-grid o
+
+
 subplot(3,1,2);
 plot(t,ct1)
+grid on
 xlim([0.7 0.72])
 title('c1(t)')
 ylabel('amplitude')
 
+
 subplot(3,1,3);
 plot(t,st1)
+grid on
 xlim([0.7 0.72])
 title('s1(t)')
 ylabel('amplitude')
 
 
 figure(2)
-subplot(3,1,2);
+subplot(3,1,1);
 plot(t,mt2)
-title('m2(t)')
+grid on
 xlim([0.7 0.72])
-xlabel('tempo(s)')
+title('m2(t)')
 ylabel('amplitude')
 
+
+subplot(3,1,2);
+plot(t,ct2)
+grid on
+xlim([0.7 0.72])
+title('c2(t)')
+ylabel('amplitude')
+
+
+subplot(3,1,3);
+plot(t,st2)
+grid on
+xlim([0.7 0.72])
+title('s2(t)')
+ylabel('amplitude')
+grid off
+
+%% 1) (b)
+
+M = fft(mt1);
+
+M2 = (M(1:((N/2) + 1))*2)/N;
+f = linspace(0,fs/2000,(N/2 + 1));
+figure(3)
+subplot(3,1,1);
+plot(f,abs(M2))
+grid on
+xlim([0 18])
+title('Aplicando fft em mt1')
+ylabel('amplitude')
+
+subplot(3,1,2);
+
+G = fft(ct1);
+G2 = (G(1:(N/2 + 1))*2)/N;
+f = linspace(0,fs/2000,(N/2 + 1));
+plot(f,abs(G2))
+title('Aplicando fft em ct1')
+xlim([0 18])
+xlabel('f(kHz)')
+ylabel('fft(c1(t))')
+
+% subplot(3,1,2);
+% plot(t,ct1)
+% grid on
+% xlim([0 18])
+% title('c1(t)')
+% ylabel('amplitude')
+% 
+% 
+% subplot(3,1,3);
+% plot(t,st1)
+% grid on
+% xlim([0 18])
+% title('s1(t)')
+% ylabel('amplitude')
+% 
+% 
+% figure(2)
+% subplot(3,1,1);
+% plot(t,mt2)
+% grid on
+% xlim([0 18])
+% title('m2(t)')
+% ylabel('amplitude')
+% 
+% 
+% subplot(3,1,2);
+% plot(t,ct2)
+% grid on
+% xlim([0.7 0.72])
+% title('c2(t)')
+% ylabel('amplitude')
+% 
+% 
+% subplot(3,1,3);
+% plot(t,st2)
+% grid on
+% xlim([0.7 0.72])
+% title('s2(t)')
+% ylabel('amplitude')
+% grid off
 
 % subplot(3,1,1);
 % plot(t,mt)
